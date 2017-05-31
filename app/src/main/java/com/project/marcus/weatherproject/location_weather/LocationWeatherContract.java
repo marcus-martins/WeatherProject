@@ -30,16 +30,4 @@ public interface LocationWeatherContract {
 
     }
 
-    interface LocationMvpInteractor {
-
-        void getWeather(double latitude, double longitude, String TEMPERATURE_TYPE, WeatherCallback callback);
-
-        interface WeatherCallback {
-
-            void returnWeather(List<WeatherResult> weatherResults);
-
-            void returnError();
-
-        }
-    }
 }

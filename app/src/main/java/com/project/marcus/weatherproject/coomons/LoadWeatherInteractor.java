@@ -1,4 +1,4 @@
-package com.project.marcus.weatherproject.location_weather;
+package com.project.marcus.weatherproject.coomons;
 
 import android.location.Location;
 
@@ -14,11 +14,11 @@ import static com.project.marcus.weatherproject.network.WeatherService.API_KEY;
  * Created by marcus on 29/05/17.
  */
 
-public class LocationWeatherInteractor implements LocationWeatherContract.LocationMvpInteractor {
+public class LoadWeatherInteractor implements LoadWeatherMvpInteractor {
     private CompositeDisposable compositeDisposable;
     private WeatherClient weatherClient;
 
-    public LocationWeatherInteractor(CompositeDisposable compositeDisposable, WeatherClient weatherClient) {
+    public LoadWeatherInteractor(CompositeDisposable compositeDisposable, WeatherClient weatherClient) {
         this.compositeDisposable = compositeDisposable;
         this.weatherClient = weatherClient;
     }
@@ -46,7 +46,7 @@ public class LocationWeatherInteractor implements LocationWeatherContract.Locati
                                 );
                                 return true;
                             })
-                            .filter(weatherResult -> weatherResult.getKilometers() < 50)
+                            .filter(weatherResult -> weatherResult.getKilometers() <= 50)
                             .toList()
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(

@@ -1,5 +1,6 @@
 package com.project.marcus.weatherproject.location_weather;
 
+import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 
 import org.junit.Before;
@@ -23,7 +24,7 @@ public class LocationWeatherPresenterTest {
     @Mock
     LocationWeatherContract.LocationMvpView locationMvpView;
     @Mock
-    LocationWeatherContract.LocationMvpInteractor locationMvpInteractor;
+    LoadWeatherMvpInteractor loadWeatherMvpInteractor;
 
     private LocationWeatherPresenter presenter;
     private double latitude = -133283.0;
@@ -35,7 +36,7 @@ public class LocationWeatherPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        presenter = new LocationWeatherPresenter(locationMvpView, locationMvpInteractor);
+        presenter = new LocationWeatherPresenter(locationMvpView, loadWeatherMvpInteractor);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class LocationWeatherPresenterTest {
     @Test
     public void checkIfGetWeatherOnLoadWeatherResults() {
         presenter.loadWeatherResults(latitude, longitude, type);
-        verify(locationMvpInteractor, times(1)).getWeather(latitude, longitude, type, presenter);
+        verify(loadWeatherMvpInteractor, times(1)).getWeather(latitude, longitude, type, presenter);
     }
 
     @Test

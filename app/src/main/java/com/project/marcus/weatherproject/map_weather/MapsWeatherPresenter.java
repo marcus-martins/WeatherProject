@@ -1,6 +1,6 @@
 package com.project.marcus.weatherproject.map_weather;
 
-import com.project.marcus.weatherproject.location_weather.LocationWeatherContract;
+import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 
 import java.util.List;
@@ -10,21 +10,21 @@ import java.util.List;
  */
 
 public class MapsWeatherPresenter implements MapsWeatherContract.MapsMvpPresenter,
-        LocationWeatherContract.LocationMvpInteractor.WeatherCallback {
+        LoadWeatherMvpInteractor.WeatherCallback {
 
     private MapsWeatherContract.MapsMvpView mapsMvpView;
-    private LocationWeatherContract.LocationMvpInteractor locationMvpInteractor;
+    private LoadWeatherMvpInteractor loadWeatherMvpInteractor;
 
     public MapsWeatherPresenter(MapsWeatherContract.MapsMvpView mapsMvpView,
-                                LocationWeatherContract.LocationMvpInteractor locationMvpInteractor) {
+                                LoadWeatherMvpInteractor loadWeatherMvpInteractor) {
         this.mapsMvpView = mapsMvpView;
-        this.locationMvpInteractor = locationMvpInteractor;
+        this.loadWeatherMvpInteractor = loadWeatherMvpInteractor;
     }
 
     @Override
     public void loadWeatherResults(double latitude, double longitude, String TEMPERATURE_TYPE) {
-        if (getView() != null && locationMvpInteractor != null) {
-            locationMvpInteractor.getWeather(latitude, longitude, TEMPERATURE_TYPE, this);
+        if (getView() != null && loadWeatherMvpInteractor != null) {
+            loadWeatherMvpInteractor.getWeather(latitude, longitude, TEMPERATURE_TYPE, this);
         }
     }
 
@@ -34,8 +34,8 @@ public class MapsWeatherPresenter implements MapsWeatherContract.MapsMvpPresente
             mapsMvpView = null;
         }
 
-        if (locationMvpInteractor != null) {
-            locationMvpInteractor = null;
+        if (loadWeatherMvpInteractor != null) {
+            loadWeatherMvpInteractor = null;
         }
     }
 

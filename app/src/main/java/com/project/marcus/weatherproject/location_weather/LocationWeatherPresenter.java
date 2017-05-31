@@ -1,5 +1,6 @@
 package com.project.marcus.weatherproject.location_weather;
 
+import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 
 import java.util.List;
@@ -9,22 +10,22 @@ import java.util.List;
  */
 
 public class LocationWeatherPresenter implements LocationWeatherContract.LocationMvpPresenter,
-        LocationWeatherContract.LocationMvpInteractor.WeatherCallback {
+        LoadWeatherMvpInteractor.WeatherCallback {
 
     private LocationWeatherContract.LocationMvpView locationMvpView;
-    private LocationWeatherContract.LocationMvpInteractor locationMvpInteractor;
+    private LoadWeatherMvpInteractor loadWeatherMvpInteractor;
 
     public LocationWeatherPresenter(LocationWeatherContract.LocationMvpView locationMvpView,
-                                    LocationWeatherContract.LocationMvpInteractor locationMvpInteractor) {
+                                    LoadWeatherMvpInteractor loadWeatherMvpInteractor) {
         this.locationMvpView = locationMvpView;
-        this.locationMvpInteractor = locationMvpInteractor;
+        this.loadWeatherMvpInteractor = loadWeatherMvpInteractor;
     }
 
     @Override
     public void loadWeatherResults(double latitude, double longitude, String TEMPERATURE_TYPE) {
-        if (getView() != null && locationMvpInteractor != null) {
+        if (getView() != null && loadWeatherMvpInteractor != null) {
             getView().showProgress();
-            locationMvpInteractor.getWeather(latitude, longitude, TEMPERATURE_TYPE, this);
+            loadWeatherMvpInteractor.getWeather(latitude, longitude, TEMPERATURE_TYPE, this);
         }
     }
 
@@ -34,8 +35,8 @@ public class LocationWeatherPresenter implements LocationWeatherContract.Locatio
             locationMvpView = null;
         }
 
-        if (locationMvpInteractor != null) {
-            locationMvpInteractor = null;
+        if (loadWeatherMvpInteractor != null) {
+            loadWeatherMvpInteractor = null;
         }
     }
 

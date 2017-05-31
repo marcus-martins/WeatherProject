@@ -23,6 +23,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.project.marcus.weatherproject.R;
 import com.project.marcus.weatherproject.WeatherApplication;
+import com.project.marcus.weatherproject.coomons.LoadWeatherInteractor;
+import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.location_weather.adapter.WeatherAdapter;
 import com.project.marcus.weatherproject.map_weather.MapsWeatherActivity;
 import com.project.marcus.weatherproject.model.WeatherResult;
@@ -62,10 +64,10 @@ public class LocationWeatherActivity extends AppCompatActivity
         WeatherClient weatherClient =
                 ((WeatherApplication) getApplication()).getWeatherClient();
 
-        LocationWeatherContract.LocationMvpInteractor
-                locationMvpInteractor = new LocationWeatherInteractor(compositeDisposable, weatherClient);
+        LoadWeatherMvpInteractor
+                loadWeatherMvpInteractor = new LoadWeatherInteractor(compositeDisposable, weatherClient);
 
-        locationMvpPresenter = new LocationWeatherPresenter(this, locationMvpInteractor);
+        locationMvpPresenter = new LocationWeatherPresenter(this, loadWeatherMvpInteractor);
 
         setupViews();
 
