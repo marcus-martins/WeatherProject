@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/weather_margin_bottom_card"
+    android:layout_marginTop="@dimen/weather_margin_top_card"
+    android:layout_marginStart="@dimen/weather_margin_start_card"
+    android:layout_marginEnd="@dimen/weather_margin_end_card">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_weather"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/card_weather_height"
+        card_view:cardCornerRadius="@dimen/card_weather_corner_radius"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/card_weather_city_txv_margin"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxLength="20"
+                android:textSize="@dimen/card_weather_city_txv_font_size"
+                tools:text="São João da Boa Vista" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/max_temperature"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="@dimen/card_weather_city_txv_margin"
+                android:layout_marginEnd="@dimen/card_weather_city_txv_margin"
+                android:textSize="@dimen/card_weather_txv_temperature_font_size"
+                tools:text="42,89º" />
+
+            <ImageView
+                android:id="@+id/weather_image"
+                android:layout_width="@dimen/card_weather_image_size"
+                android:layout_height="@dimen/card_weather_image_size"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_alignBottom="@+id/temperature"
+                android:layout_alignStart="@+id/city_name" />
+
+            <TextView
+                android:id="@+id/min_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/card_weather_min_temp_text_size"
+                tools:text="Min.: 42,55º"
+                android:layout_alignBaseline="@+id/max_temperature"
+                android:layout_alignBottom="@+id/max_temperature"
+                android:layout_alignStart="@+id/weather_image" />
+
+            <TextView
+                android:id="@+id/max_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/card_weather_max_temp_text_size"
+                tools:text="Máx.: 42.55º"
+                android:layout_marginBottom="@dimen/card_weather_city_txv_margin"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_weather_description_margin_top"
+                android:textSize="@dimen/card_weather_description_font_size"
+                tools:text="Céu Aberto"
+                android:layout_below="@+id/city_name"
+                android:layout_toEndOf="@+id/weather_image"
+                android:layout_marginStart="@dimen/card_weather_description_margin_star" />
+
+            <TextView
+                android:id="@+id/kilometers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/card_weather_max_temp_text_size"
+                android:layout_alignEnd="@+id/temperature"
+                android:layout_alignTop="@+id/max_temperature"
+                tools:text="55 KM" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

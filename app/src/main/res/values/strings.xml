@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">WeatherProject</string>
+    <string name="title_activity_maps">Map Weather</string>
+
+    <string name="min_temperature">Min.: %.1fº</string>
+    <string name="max_temperature">Máx.: %.1fº</string>
+    <string name="temperature">%.1fº</string>
+    <string name="map_temperature" formatted="false" >%s: %.1fº</string>
+    <string name="kilometers">%.1f KM</string>
+
+    <string name="gps_problem_message">Opa! Houve um problema com seu GPS. Tente novamente!</string>
+    <string name="retry_text">Tentar novamente.</string>
+    <string name="weather_results_error">Ocorreu um erro ao carregar informações de tempo…</string>
+    <string name="celsius">Celsius</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+</resources>

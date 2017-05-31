@@ -1,0 +1,22 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="card_weather_height">160dp</dimen>
+    <dimen name="card_weather_corner_radius">4dp</dimen>
+    <dimen name="card_weather_city_txv_margin">16dp</dimen>
+    <dimen name="card_weather_city_txv_font_size">32sp</dimen>
+    <dimen name="card_weather_txv_temperature_margin_end">16dp</dimen>
+    <dimen name="card_weather_txv_temperature_font_size">36sp</dimen>
+    <dimen name="card_weather_image_size">48dp</dimen>
+    <dimen name="card_weather_image_margin">16dp</dimen>
+    <dimen name="card_weather_min_temp_text_size">14sp</dimen>
+    <dimen name="card_weather_max_temp_text_size">14sp</dimen>
+    <dimen name="weather_margin_top_card">8dp</dimen>
+    <dimen name="weather_margin_bottom_card">8dp</dimen>
+    <dimen name="weather_margin_start_card">16dp</dimen>
+    <dimen name="weather_margin_end_card">16dp</dimen>
+    <dimen name="card_weather_description_margin_top">11dp</dimen>
+    <dimen name="card_weather_description_font_size">12sp</dimen>
+    <dimen name="card_weather_description_margin_star">16dp</dimen>
+</resources>
