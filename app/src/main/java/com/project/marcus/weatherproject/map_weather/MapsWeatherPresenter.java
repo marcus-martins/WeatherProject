@@ -1,9 +1,6 @@
 package com.project.marcus.weatherproject.map_weather;
 
 import com.project.marcus.weatherproject.commons.LoadWeatherMvpInteractor;
-import com.project.marcus.weatherproject.model.WeatherResult;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
