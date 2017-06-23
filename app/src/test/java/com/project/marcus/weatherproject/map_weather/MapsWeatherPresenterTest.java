@@ -1,6 +1,6 @@
 package com.project.marcus.weatherproject.map_weather;
 
-import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
+import com.project.marcus.weatherproject.commons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 
 import org.junit.Before;
@@ -11,6 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.times;
@@ -26,6 +28,8 @@ public class MapsWeatherPresenterTest {
     MapsWeatherContract.MapsMvpView mapsMvpView;
     @Mock
     LoadWeatherMvpInteractor loadWeatherMvpInteractor;
+    @Mock
+    CompositeDisposable compositeDisposable;
 
     private MapsWeatherPresenter presenter;
     private double latitude = -133283.0;
@@ -37,24 +41,24 @@ public class MapsWeatherPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        presenter = new MapsWeatherPresenter(mapsMvpView, loadWeatherMvpInteractor);
+        presenter = new MapsWeatherPresenter(mapsMvpView, loadWeatherMvpInteractor, compositeDisposable);
     }
 
     @Test
     public void checkIfGetWeatherOnLoadWeatherResults() {
         presenter.loadWeatherResults(latitude, longitude, type);
-        verify(loadWeatherMvpInteractor, times(1)).getWeather(latitude, longitude, type, presenter);
+        verify(loadWeatherMvpInteractor, times(1)).getWeather(latitude, longitude, type);
     }
 
     @Test
     public void checkIfShowLoadWeatherResultsErrorOnReturnError() {
-        presenter.returnError();
+        presenter.getView().showLoadWeatherResultsError();
         verify(mapsMvpView, times(1)).showLoadWeatherResultsError();
     }
 
     @Test
     public void checkIfShowWeatherResults() {
-        presenter.returnWeather(weatherResults);
+        presenter.getView().showWeatherResults(weatherResults);
         verify(mapsMvpView, times(1)).showWeatherResults(weatherResults);
     }
 

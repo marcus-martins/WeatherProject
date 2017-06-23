@@ -15,8 +15,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.project.marcus.weatherproject.R;
 import com.project.marcus.weatherproject.WeatherApplication;
-import com.project.marcus.weatherproject.coomons.LoadWeatherInteractor;
-import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
+import com.project.marcus.weatherproject.commons.LoadWeatherInteractor;
+import com.project.marcus.weatherproject.commons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 import com.project.marcus.weatherproject.network.WeatherClient;
 
@@ -47,9 +47,9 @@ public class MapsWeatherActivity extends AppCompatActivity implements MapsWeathe
                 ((WeatherApplication) getApplication()).getWeatherClient();
 
         LoadWeatherMvpInteractor
-                loadWeatherMvpInteractor = new LoadWeatherInteractor(compositeDisposable, weatherClient);
+                loadWeatherMvpInteractor = new LoadWeatherInteractor(weatherClient);
 
-        mapsMvpPresenter = new MapsWeatherPresenter(this, loadWeatherMvpInteractor);
+        mapsMvpPresenter = new MapsWeatherPresenter(this, loadWeatherMvpInteractor, compositeDisposable);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

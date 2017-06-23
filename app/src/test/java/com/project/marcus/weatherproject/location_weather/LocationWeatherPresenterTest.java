@@ -1,6 +1,6 @@
 package com.project.marcus.weatherproject.location_weather;
 
-import com.project.marcus.weatherproject.coomons.LoadWeatherMvpInteractor;
+import com.project.marcus.weatherproject.commons.LoadWeatherMvpInteractor;
 import com.project.marcus.weatherproject.model.WeatherResult;
 
 import org.junit.Before;
@@ -11,6 +11,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.reactivex.disposables.CompositeDisposable;
+
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -26,6 +29,8 @@ public class LocationWeatherPresenterTest {
     @Mock
     LoadWeatherMvpInteractor loadWeatherMvpInteractor;
 
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     private LocationWeatherPresenter presenter;
     private double latitude = -133283.0;
     private double longitude = -143283.0;
@@ -36,7 +41,7 @@ public class LocationWeatherPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-        presenter = new LocationWeatherPresenter(locationMvpView, loadWeatherMvpInteractor);
+        presenter = new LocationWeatherPresenter(locationMvpView, loadWeatherMvpInteractor, compositeDisposable);
     }
 
     @Test
@@ -48,30 +53,30 @@ public class LocationWeatherPresenterTest {
     @Test
     public void checkIfGetWeatherOnLoadWeatherResults() {
         presenter.loadWeatherResults(latitude, longitude, type);
-        verify(loadWeatherMvpInteractor, times(1)).getWeather(latitude, longitude, type, presenter);
+        verify(loadWeatherMvpInteractor, times(1)).getWeather(latitude, longitude, type);
     }
 
     @Test
     public void checkIfHideProgressOnReturnWeather() {
-        presenter.returnWeather(weatherResults);
+        presenter.getView().showWeatherResults(weatherResults);
         verify(locationMvpView, times(1)).hideProgress();
     }
 
     @Test
     public void checkIfHideProgressOnReturnError() {
-        presenter.returnError();
+        presenter.getView().showLoadWeatherResultsError();
         verify(locationMvpView, times(1)).hideProgress();
     }
 
     @Test
     public void checkIfShowLoadWeatherResultsErrorOnReturnError() {
-        presenter.returnError();
+        presenter.getView().showLoadWeatherResultsError();
         verify(locationMvpView, times(1)).showLoadWeatherResultsError();
     }
 
     @Test
     public void checkIfShowWeatherResults() {
-        presenter.returnWeather(weatherResults);
+        presenter.getView().showWeatherResults(weatherResults);
         verify(locationMvpView, times(1)).showWeatherResults(weatherResults);
     }
 
